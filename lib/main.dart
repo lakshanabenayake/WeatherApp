@@ -182,19 +182,61 @@ class _WeatherDashboardState extends State<WeatherDashboard> {
         await _saveCachedData();
       } else {
         setState(() {
-          _errorMessage = 'Failed to fetch weather: ${response.statusCode}';
+          _errorMessage = _getStatusCodeErrorMessage(response.statusCode);
           _isLoading = false;
         });
       }
     } catch (e) {
       setState(() {
-        _errorMessage = 'Error: $e';
+        _errorMessage = _getFriendlyErrorMessage(e);
         _isLoading = false;
         // Show cached data if available
         if (_temperature != null) {
           _isCached = true;
         }
       });
+    }
+  }
+
+  /// Convert HTTP status codes to user-friendly messages
+  String _getStatusCodeErrorMessage(int statusCode) {
+    switch (statusCode) {
+      case 400:
+        return '⚠️ Invalid request. Please check your location data.';
+      case 401:
+      case 403:
+        return '🔒 Access denied. Unable to fetch weather data.';
+      case 404:
+        return '🔍 Weather data not found for this location.';
+      case 429:
+        return '⏸️ Too many requests. Please wait a moment and try again.';
+      case 500:
+      case 502:
+      case 503:
+        return '🛠️ Weather service is temporarily unavailable. Please try again later.';
+      default:
+        return '❌ Unable to fetch weather data (Error $statusCode). Please try again.';
+    }
+  }
+
+  /// Convert technical errors to user-friendly messages
+  String _getFriendlyErrorMessage(dynamic error) {
+    final errorString = error.toString().toLowerCase();
+
+    if (errorString.contains('timeout') || errorString.contains('timed out')) {
+      return '⏱️ Request timed out. Please check your internet connection and try again.';
+    } else if (errorString.contains('socketexception') ||
+               errorString.contains('network') ||
+               errorString.contains('failed host lookup')) {
+      return '📡 No internet connection. Please check your network and try again.';
+    } else if (errorString.contains('handshake') || errorString.contains('certificate')) {
+      return '🔒 Security error. Please check your internet connection.';
+    } else if (errorString.contains('connection refused')) {
+      return '🚫 Cannot connect to weather service. Please try again later.';
+    } else if (errorString.contains('format')) {
+      return '⚠️ Received invalid data from weather service. Please try again.';
+    } else {
+      return '❌ Unable to fetch weather data. Please try again later.';
     }
   }
 
