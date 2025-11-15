@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Weather Dashboard - 224002L',
+      title: 'Weather Dashboard',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
@@ -33,7 +33,7 @@ class WeatherDashboard extends StatefulWidget {
 }
 
 class _WeatherDashboardState extends State<WeatherDashboard> {
-  final _indexController = TextEditingController(text: '224002');
+  final _indexController = TextEditingController(text: '194174');
 
   double? _latitude;
   double? _longitude;
@@ -297,7 +297,7 @@ class _WeatherDashboardState extends State<WeatherDashboard> {
               TextField(
                 controller: _indexController,
                 decoration: InputDecoration(
-                  hintText: 'e.g., 224002L',
+                  hintText: 'e.g., 194174B',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -425,13 +425,13 @@ class _WeatherDashboardState extends State<WeatherDashboard> {
         onPressed: _isLoading ? null : _fetchWeather,
         icon: _isLoading
             ? const SizedBox(
-          width: 20,
-          height: 20,
-          child: CircularProgressIndicator(
-            strokeWidth: 2,
-            color: Colors.white,
-          ),
-        )
+                width: 20,
+                height: 20,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  color: Colors.white,
+                ),
+              )
             : const Icon(Icons.cloud_download, size: 24),
         label: Text(
           _isLoading ? 'Fetching Weather...' : 'Fetch Weather',
