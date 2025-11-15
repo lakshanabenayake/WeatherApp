@@ -227,31 +227,31 @@ class _WeatherDashboardState extends State<WeatherDashboard> {
           ),
         ),
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               // Student Index Input
               _buildIndexCard(),
-              const SizedBox(height: 16),
+              const SizedBox(height: 8),
 
               // Coordinates Display
               if (_latitude != null && _longitude != null)
                 _buildCoordinatesCard(),
               if (_latitude != null && _longitude != null)
-                const SizedBox(height: 16),
+                const SizedBox(height: 8),
 
               // Fetch Weather Button
               _buildFetchButton(),
-              const SizedBox(height: 16),
+              const SizedBox(height: 8),
 
               // Error Message
               if (_errorMessage != null) _buildErrorCard(),
-              if (_errorMessage != null) const SizedBox(height: 16),
+              if (_errorMessage != null) const SizedBox(height: 8),
 
               // Weather Data Display
               if (_temperature != null) _buildWeatherCard(),
-              if (_temperature != null) const SizedBox(height: 16),
+              if (_temperature != null) const SizedBox(height: 8),
 
               // Request URL Display
               if (_requestUrl != null) _buildUrlCard(),
@@ -264,11 +264,11 @@ class _WeatherDashboardState extends State<WeatherDashboard> {
 
   Widget _buildIndexCard() {
     return Card(
-      elevation: 4,
+      elevation: 2,
       shadowColor: Colors.blue.shade200,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(12),
           gradient: LinearGradient(
             colors: [Colors.white, Colors.blue.shade50],
             begin: Alignment.topLeft,
@@ -276,38 +276,39 @@ class _WeatherDashboardState extends State<WeatherDashboard> {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
-                  Icon(Icons.badge, color: Colors.blue.shade700, size: 24),
-                  const SizedBox(width: 8),
+                  Icon(Icons.badge, color: Colors.blue.shade700, size: 20),
+                  const SizedBox(width: 6),
                   const Text(
                     'Student Index',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 15,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 8),
               TextField(
                 controller: _indexController,
                 decoration: InputDecoration(
                   hintText: 'e.g., 224002L',
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(8),
                   ),
-                  prefixIcon: const Icon(Icons.person),
+                  prefixIcon: const Icon(Icons.person, size: 20),
                   contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 16,
+                    horizontal: 12,
+                    vertical: 8,
                   ),
                   filled: true,
                   fillColor: Colors.white,
+                  isDense: true,
                 ),
                 keyboardType: TextInputType.text,
               ),
@@ -320,11 +321,11 @@ class _WeatherDashboardState extends State<WeatherDashboard> {
 
   Widget _buildCoordinatesCard() {
     return Card(
-      elevation: 4,
+      elevation: 2,
       shadowColor: Colors.green.shade200,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(12),
           gradient: LinearGradient(
             colors: [Colors.green.shade50, Colors.green.shade100],
             begin: Alignment.topLeft,
@@ -332,68 +333,72 @@ class _WeatherDashboardState extends State<WeatherDashboard> {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
-                  Icon(Icons.map, color: Colors.green.shade700, size: 24),
-                  const SizedBox(width: 8),
+                  Icon(Icons.map, color: Colors.green.shade700, size: 20),
+                  const SizedBox(width: 6),
                   const Text(
                     'Computed Coordinates',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 15,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
-                  children: [
-                    Icon(Icons.north, color: Colors.green.shade700, size: 20),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Text(
-                        'Latitude: ${_latitude!.toStringAsFixed(2)}°',
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
               const SizedBox(height: 8),
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
-                  children: [
-                    Icon(Icons.east, color: Colors.green.shade700, size: 20),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Text(
-                        'Longitude: ${_longitude!.toStringAsFixed(2)}°',
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
+              Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(Icons.north, color: Colors.green.shade700, size: 16),
+                          const SizedBox(width: 4),
+                          Text(
+                            'Lat: ${_latitude!.toStringAsFixed(2)}°',
+                            style: const TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(Icons.east, color: Colors.green.shade700, size: 16),
+                          const SizedBox(width: 4),
+                          Text(
+                            'Lon: ${_longitude!.toStringAsFixed(2)}°',
+                            style: const TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -444,7 +449,7 @@ class _WeatherDashboardState extends State<WeatherDashboard> {
           backgroundColor: Colors.transparent,
           foregroundColor: Colors.white,
           shadowColor: Colors.transparent,
-          padding: const EdgeInsets.symmetric(vertical: 18),
+          padding: const EdgeInsets.symmetric(vertical: 14),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
@@ -455,11 +460,11 @@ class _WeatherDashboardState extends State<WeatherDashboard> {
 
   Widget _buildErrorCard() {
     return Card(
-      elevation: 3,
+      elevation: 2,
       shadowColor: Colors.red.shade200,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(12),
           gradient: LinearGradient(
             colors: [Colors.red.shade50, Colors.red.shade100],
             begin: Alignment.topLeft,
@@ -467,11 +472,11 @@ class _WeatherDashboardState extends State<WeatherDashboard> {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(12),
           child: Row(
             children: [
               Container(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
                   color: Colors.red.shade200,
                   shape: BoxShape.circle,
@@ -479,16 +484,16 @@ class _WeatherDashboardState extends State<WeatherDashboard> {
                 child: const Icon(
                   Icons.error_outline,
                   color: Colors.red,
-                  size: 24,
+                  size: 18,
                 ),
               ),
-              const SizedBox(width: 12),
+              const SizedBox(width: 8),
               Expanded(
                 child: Text(
                   _errorMessage!,
                   style: TextStyle(
                     color: Colors.red.shade900,
-                    fontSize: 14,
+                    fontSize: 13,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -605,28 +610,28 @@ class _WeatherDashboardState extends State<WeatherDashboard> {
     return Card(
       elevation: 2,
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
-                Icon(Icons.link, color: Colors.grey.shade700, size: 20),
-                const SizedBox(width: 8),
+                Icon(Icons.link, color: Colors.grey.shade700, size: 18),
+                const SizedBox(width: 6),
                 const Text(
                   'Request URL',
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 13,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 6),
             SelectableText(
               _requestUrl!,
               style: TextStyle(
-                fontSize: 10,
+                fontSize: 9,
                 fontFamily: 'monospace',
                 color: Colors.grey.shade700,
               ),
