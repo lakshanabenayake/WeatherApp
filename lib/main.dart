@@ -203,7 +203,7 @@ class _WeatherDashboardState extends State<WeatherDashboard> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          '☁️ Weather Dashboard',
+          '☁️ Weather Dashboard - 224002L',
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         centerTitle: true,
@@ -322,12 +322,12 @@ class _WeatherDashboardState extends State<WeatherDashboard> {
   Widget _buildCoordinatesCard() {
     return Card(
       elevation: 2,
-      shadowColor: Colors.green.shade200,
+      shadowColor: Colors.blue.shade200,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           gradient: LinearGradient(
-            colors: [Colors.green.shade50, Colors.green.shade100],
+            colors: [Colors.blue.shade50, Colors.blue.shade100],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -339,7 +339,7 @@ class _WeatherDashboardState extends State<WeatherDashboard> {
             children: [
               Row(
                 children: [
-                  Icon(Icons.map, color: Colors.green.shade700, size: 20),
+                  Icon(Icons.map, color: Colors.blue.shade700, size: 20),
                   const SizedBox(width: 6),
                   const Text(
                     'Computed Coordinates',
@@ -362,7 +362,7 @@ class _WeatherDashboardState extends State<WeatherDashboard> {
                       ),
                       child: Row(
                         children: [
-                          Icon(Icons.north, color: Colors.green.shade700, size: 16),
+                          Icon(Icons.north, color: Colors.blue.shade700, size: 16),
                           const SizedBox(width: 4),
                           Text(
                             'Lat: ${_latitude!.toStringAsFixed(2)}°',
@@ -385,7 +385,7 @@ class _WeatherDashboardState extends State<WeatherDashboard> {
                       ),
                       child: Row(
                         children: [
-                          Icon(Icons.east, color: Colors.green.shade700, size: 16),
+                          Icon(Icons.east, color: Colors.blue.shade700, size: 16),
                           const SizedBox(width: 4),
                           Text(
                             'Lon: ${_longitude!.toStringAsFixed(2)}°',
