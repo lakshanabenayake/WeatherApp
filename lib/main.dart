@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Weather Dashboard',
+      title: 'Weather Dashboard - 224002L',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         useMaterial3: true,
@@ -198,7 +198,7 @@ class _WeatherDashboardState extends State<WeatherDashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Weather Dashboard'),
+        title: const Text('Weather Dashboard - 224002L'),
         centerTitle: true,
         elevation: 2,
       ),
@@ -226,7 +226,7 @@ class _WeatherDashboardState extends State<WeatherDashboard> {
                     TextField(
                       controller: _indexController,
                       decoration: const InputDecoration(
-                        hintText: 'e.g., 194174',
+                        hintText: 'e.g., 224002',
                         border: OutlineInputBorder(),
                         prefixIcon: Icon(Icons.person),
                       ),
